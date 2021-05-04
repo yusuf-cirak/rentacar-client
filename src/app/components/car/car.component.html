@@ -9,14 +9,13 @@
         <th scope="col">Marka</th>
         <th scope="col">Renk</th>
         <th scope="col">Model</th>
-        <th scope="col">Günlük Ücret</th>
+        <th scope="col">Fiyat</th>
         <th scope="col">Açıklama</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let car of cars" routerLink="/car-detail/{{car.carId}}">
-        <th scope="row">{{car.carBrandName}}</th>
-        <td>{{car.carId}}</td>
+        <th scope="row">{{car.carId}}</th>
         <td>{{car.carName}}</td>
         <td>{{car.carBrandName}}</td>
         <td>{{car.carColorName}}</td>

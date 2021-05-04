@@ -25,6 +25,7 @@ export class CarDetailComponent implements OnInit {
       if (params["carId"]){
         this.getCarDetail(params["carId"]);
         this.getCarImages(params["carId"]);
+
       }
     })
     
