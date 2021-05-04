@@ -8,31 +8,29 @@ import { ColorService } from '../services/color.service';
   styleUrls: ['./color.component.css']
 })
 export class ColorComponent implements OnInit {
-  colors:Color[]=[];
-  currentColor:Color; // Bir kategoriye tıkladığımızda set etmiş oluyoruz. Binding yapılabilir hale geliyor.
-  dataLoaded=false;
+  colors : Color[];
+  dataLoaded = false;
+  currentColor : Color;
 
   constructor(private colorService:ColorService) { }
 
-  ngOnInit(): void { this.getColors();}
-  
+  ngOnInit(): void {
+    this.getColors();
+  }
 
   getColors(){
-    console.log(" Color API Request başladı")
-    this.colorService.getColors().subscribe(response=>{
-      this.colors=response.data
-      this.dataLoaded=true;
-      console.log(" Color API Request bitti")
+    this.colorService.getColors().subscribe((response) => {
+      this.colors = response.data;
+      this.dataLoaded = true;
     })
-    console.log("Color Metod bitti")
   }
 
   setCurrentColor(color:Color){
-    this.currentColor=color;
+    this.currentColor = color;
   }
 
   getCurrentColorClass(color:Color){
-    if(color==this.currentColor){
+    if (color == this.currentColor) {
       return "list-group-item active"
     }else{
       return "list-group-item"
@@ -40,11 +38,10 @@ export class ColorComponent implements OnInit {
   }
 
   getAllColorClass(){
-    if(!this.currentColor){
+    if (!this.currentColor) {
       return "list-group-item active"
     }else{
       return "list-group-item"
     }
   }
-
 }

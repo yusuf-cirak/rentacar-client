@@ -27,7 +27,8 @@ export class CarDetailComponent implements OnInit {
   getCarDetail(){
     const carId = this.activatedRoute.snapshot.paramMap.get('carId')?.toString();
     this.carService.getCarDetailById(Number(carId)).subscribe(response => {
-      this.currentCar = response.data
+      let items:any=response.data
+      this.currentCar=items[0]
     })
   }
 
