@@ -10,6 +10,7 @@ import { CarService } from '../services/car.service';
 })
 export class CarComponent implements OnInit {
   cars:Car[]=[];
+  currentCar:Car;
   dataLoaded=false;
   
   constructor(private carService:CarService,
@@ -48,6 +49,10 @@ export class CarComponent implements OnInit {
       this.cars=response.data
       this.dataLoaded=true;
     })
+  }
+
+  setCurrentCar(car:Car){
+    this.currentCar=car;
   }
 
 }

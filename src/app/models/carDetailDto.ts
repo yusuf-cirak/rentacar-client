@@ -1,6 +1,6 @@
 import { CarImage } from "./carImage";
 
-export interface Car{
+export interface CarDetailDto{
     carId:number;
     carName:string;
     carBrandId:number;
@@ -11,4 +11,5 @@ export interface Car{
     carDailyPrice:number;
     carDescription:string;
     carImage:CarImage[];
+
 }
