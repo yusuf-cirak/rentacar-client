@@ -12,6 +12,7 @@ export class CarComponent implements OnInit {
   cars:Car[]=[];
   currentCar:Car;
   dataLoaded=false;
+  defaultPath="https://localhost:44334"
   
   constructor(private carService:CarService,
     private activatedRoute:ActivatedRoute) { }
