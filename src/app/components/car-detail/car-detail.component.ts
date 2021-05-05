@@ -13,6 +13,7 @@ import { CarImageService } from '../services/carImage.service';
 export class CarDetailComponent implements OnInit {
   currentCar:Car;
   carImages:CarImage[];
+  dataLoaded=false;
   
   constructor(
     private carService:CarService,
@@ -20,22 +21,27 @@ export class CarDetailComponent implements OnInit {
     private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getCarDetail();
-    this.getCarImages();
-  }
-
-  getCarDetail(){
-    const carId = this.activatedRoute.snapshot.paramMap.get('carId')?.toString();
-    this.carService.getCarDetailById(Number(carId)).subscribe(response => {
-      let items:any=response.data
-      this.currentCar=items[0]
+    this.activatedRoute.params.subscribe(params=>{
+      if(params["carId"]){
+        this.getCarImages(params["carId"])
+        this.getCarDetail(params["carId"])
+      }
     })
   }
 
-  getCarImages(){
-    const carId = this.activatedRoute.snapshot.paramMap.get('carId')?.toString();
-    this.carImageService.getImagesByCarId(Number(carId)).subscribe(response => {
-      this.carImages = response.data;
+  getCarDetail(carId:number){
+    this.carService.getCarDetailById(carId).subscribe(response => {
+      let items:any=response.data
+      this.currentCar=items[0];
+      this.dataLoaded=true;
+    })
+  }
+
+  getCarImages(carId:number){
+    this.carImageService.getImagesByCarId(carId).subscribe(response => {
+      this.carImages=response.data
+      this.dataLoaded=true;
+
 
       console.log(response.data)
     })
