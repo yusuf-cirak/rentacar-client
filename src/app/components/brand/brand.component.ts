@@ -11,6 +11,7 @@ export class BrandComponent implements OnInit {
   brands:Brand[]=[];
   currentBrand:Brand; // Bir kategoriye tıkladığımızda set etmiş oluyoruz. Binding yapılabilir hale geliyor.
   dataLoaded=false;
+  filterText="";
 
   constructor(private brandService:BrandService) { }
 

@@ -1,3 +1,10 @@
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Araç ara</label>
+  <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Arama ifadesi giriniz">
+</div>
+<div *ngIf="filterText" class="alert alert-success">
+  {{filterText}} aradınız.
+</div>
 <table class="table">
   <thead>
     <tr>
@@ -7,16 +14,18 @@
       <th scope="col">Renk</th>
       <th scope="col">Günlük Ücret</th>
       <th scope="col">Açıklama</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let car of cars" routerLink="/car-detail/{{car.carId}}">
+    <tr *ngFor="let car of cars | filterPipe:filterText " routerLink="/car-detail/{{car.carId}}">
       <th scope="row">{{car.carId}}</th>
       <td>{{car.carBrandName}}</td>
       <td>{{car.carModelYear}}</td>
       <td>{{car.carColorName}}</td>
-      <td>{{car.carDailyPrice}}</td>
+      <td>{{car.carDailyPrice | vatAdded:18}} ₺</td>
       <td>{{car.carDescription}}</td>
+      <td><button (click)="addToCart(car)" type="button" class="btn btn-success btn-xs">Kiralama listesine ekle</button></td>
     </tr>
   </tbody>
 </table>
