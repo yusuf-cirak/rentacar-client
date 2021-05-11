@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup,FormBuilder,FormControl,Validators} from '@angular/forms' //
 import { ToastrService } from 'ngx-toastr';
-import { CarService } from '../services/car.service';
+import { CarService } from '../../services/car.service';
 
 @Component({
   selector: 'app-car-add',
