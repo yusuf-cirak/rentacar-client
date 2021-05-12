@@ -23,6 +23,10 @@ import { CarAddComponent } from './components/car/car-add/car-add.component';
 import { ColorAddComponent } from './components/color/color-add/color-add.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LoginComponent } from './components/login/login.component';
+import { BrandPipePipe } from './pipes/brand-pipe.pipe';
+import { BrandDetailComponent } from './components/brand/brand-detail/brand-detail.component';
+import { ColorDetailComponent } from './components/color/color-detail/color-detail.component';
+import { ColorPipePipe } from './pipes/color-pipe.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +43,11 @@ import { LoginComponent } from './components/login/login.component';
     CarAddComponent,
     BrandAddComponent,
     ColorAddComponent,
-    LoginComponent
+    LoginComponent,
+    BrandPipePipe,
+    BrandDetailComponent,
+    ColorDetailComponent,
+    ColorPipePipe,
   ],
   imports: [
     BrowserModule,

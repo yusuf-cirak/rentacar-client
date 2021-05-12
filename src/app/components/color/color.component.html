@@ -1,11 +1,26 @@
-<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Renk ara</label>
-  <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText3" placeholder="Arama ifadesi giriniz">
+<div class="card">
+  <div class="card-header">
+    <input
+      type="text"
+      [(ngModel)]="filterText"
+      class="form-control"
+      id="filterTextColor"
+      placeholder="Renk giriniz.."
+    />
+  </div>
+  <div class="card-body">
+    <ul class="list-group">
+      <li
+        *ngFor="let color of colors | colorPipe: filterText"
+        class="list-group-item"
+        style="font-size: 16px;"
+      >
+        <span><b>{{ color.colorName }}</b></span>
+        <button type="button" class="btn" style="background-color: #8cb126; float: right;" (click)="goToDetail(color.colorId)"><b>Düzenle</b></button>
+      </li>
+    </ul>
+  </div>
+  <div class="card-footer">
+    <button type="button" class="btn" style="background-color: #8cb126;" (click)="goToAdd()" ><b>Ekle</b></button>
+  </div>
 </div>
-<div *ngIf="filterText" class="alert alert-success">
-  {{filterText}} aradınız.
-</div>
-<ul class="list-group">
-  <li [class]="getAllColorClass()" routerLink="/cars" aria-current="true">Renkler</li>
-  <li (click)="setCurrentColor(color)" routerLink="/cars/color/{{color.colorId}}" *ngFor="let color of colors" [class]="getCurrentColorClass(color)">{{color.colorName}}</li>
-</ul>

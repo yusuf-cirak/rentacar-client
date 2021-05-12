@@ -3,17 +3,21 @@
         <div class="card">
             <div class="card-header"><h1 class="title"><b>Marka</b></h1></div>
             <div class="card-body">
-                <form [formGroup]="brandAddForm">
+                <form [formGroup]="brandForm">
                     <div class="form-group">
                         <div class="mb-3">
+                            <label for="brandId" style="display: none;" ><b>Marka Id</b></label>
+                            <input type="text" id="brandId" formControlName="brandId" class="form-control" [(ngModel)]="brandId" style="display: none;"/>
+                        </div>
+                        <div class="mb-3">
                             <label for="brandName"><b>Marka Adı</b></label>
-                            <input type="text" id="brandName" formControlName="brandName" class="form-control"/>
+                            <input type="text" id="brandName" formControlName="brandName" class="form-control" [(ngModel)]="brandName"/>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="card-footer">
-                <button class="btn btn-fill" style="background-color: #8cb126;" (click)="add()"><b>Ekle</b></button>
+                <button class="btn btn-fill" style="background-color: #8cb126;" (click)="update()"><b>Güncelle</b></button>
                 <button class="btn btn-fill" style="background-color: #8cb126; float: right;" (click)="goToBrands()"><b>Geri</b></button>
             </div>
         </div>
