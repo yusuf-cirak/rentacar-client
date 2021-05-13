@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Car } from 'src/app/models/car';
+import { CarDetailDto } from 'src/app/models/car-detail-dto';
 import { CarImage } from 'src/app/models/carImage';
 import { CarService } from '../../services/car.service';
 import { CarImageService } from '../../services/carImage.service';
@@ -11,7 +12,8 @@ import { CarImageService } from '../../services/carImage.service';
   styleUrls: ['./car-detail.component.css']
 })
 export class CarDetailComponent implements OnInit {
-  carDetail: Car | null;
+  carDetail: Car | null; // bununda modelini değiştirmek gerek ama yeni bir tane tanılmıyorum
+  carDetailDto:CarDetailDto;
   carImages: CarImage[] = [];
   carName: string;
   carModel: number;
@@ -32,21 +34,23 @@ export class CarDetailComponent implements OnInit {
       if (params['carId']) {
         this.getCarDetailByCarId();
         this.getImageByCarId();
-        
       }
     });
   }
+
+  // hata sanırım apiden bize IDataresult geliyorken,burada single ile karşılayamıyor
 
   getCarDetailByCarId() {
     this.carService
       .getCarDetailById(this.activatedRoute.snapshot.params['carId'])
       .subscribe((response) => {
-        this.carDetail = response.data;
-        this.carName = this.carDetail.carName;
-        this.carModel = this.carDetail.carModelYear;
-        this.carPrice = this.carDetail.carDailyPrice;
-        this.carDesc = this.carDetail.carDescription;
-        this.carColor = this.carDetail.carColorName;
+        this.carDetailDto = response.data;
+        console.log(this.carDetailDto);
+        // this.carName = this.carDetail.carName;
+        // this.carModel = this.carDetail.carModelYear;
+        // this.carPrice = this.carDetail.carDailyPrice;
+        // this.carDesc = this.carDetail.carDescription;
+        // this.carColor = this.carDetail.carColorName;
       });
   }
 

@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Brand } from 'src/app/models/brand';
 import { Car } from 'src/app/models/car';
+import { CarImage } from 'src/app/models/carImage';
 import { Color } from 'src/app/models/color';
 import { BrandService } from '../services/brand.service';
 import { CarService } from '../services/car.service';
+import { CarImageService } from '../services/carImage.service';
 import { ColorService } from '../services/color.service';
 
 @Component({
@@ -26,7 +28,10 @@ export class CarComponent implements OnInit {
     private router: Router,
     private brandService: BrandService,
     private colorService: ColorService,
+    private carimageService:CarImageService
   ) {}
+
+  loaded:boolean=false;
 
   ngOnInit(): void {
     this.getBrands();
@@ -42,11 +47,17 @@ export class CarComponent implements OnInit {
     });
   }
 
+
   getCars() {
     this.carService.getCars().subscribe((response) => {
-      this.cars = response.data;
+this.cars=response.data
     });
+
+ // araçlar yüklendikten sonra
   }
+// çalışıyor ama beklemeden basıyor.
+  // backend kısmında ne gibi bir konfigürasyon yaparsam bundan kurtulurum? aslında bu kad da fena gözükmüyor ama yük oluyor işte.her araç için sunucuya tekrar gidecek.deneyelim bi çalışıyor mu bu haliyle
+  // bu haliyle iş görür ama aşırı kaynak tüketir.
 
   getCarsByBrand(brandId: number) {
     if (brandId == 0) {

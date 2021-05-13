@@ -1,4 +1,4 @@
-<div class="card" >
+<div class="card" *ngIf="carDetailDto">
   <div class="card-header" style="height: 41rem;">
     <div class="card-img col-md-12">
       <div
@@ -11,7 +11,7 @@
           style="height: 40rem; width: 53, 5rem"
         >
           <div
-            *ngFor="let carImage of carImages; index as i; first as firstImage"
+            *ngFor="let carImage of carDetailDto.carImage; index as i; first as firstImage"
             class="carousel-item align-self-center"
             [ngClass]="{ active: firstImage }"
             style="height: 100%; width: 100%"
@@ -45,14 +45,15 @@
       </div>
     </div>
   </div>
+
   <div class="card-body col-md-12">
     <h1 class="card-title">
-      <b>{{ carName }}</b>
+      <b>{{ carDetailDto.carName }}</b>
     </h1>
-    <p class="card-text">{{ carModel }}</p>
-    <p class="card-text"><b>Renk:</b> {{ carColor }}</p>
-    <p class="card-text"><b>Fiyat:</b> {{ carPrice | number: "1.0-0" }} TL</p>
-    <p class="card-text"><b>Açıklama:</b> {{ carDesc }}</p>
+    <p class="card-text">{{ carDetailDto.carModelYear }}</p>
+    <p class="card-text"><b>Renk:</b> {{ carDetailDto.carColorName }}</p>
+    <p class="card-text"><b>Fiyat:</b> {{ carDetailDto.carDailyPrice | number: "1.0-0" }} TL</p>
+    <p class="card-text"><b>Açıklama:</b> {{ carDetailDto.carDescription }}</p>
 </div>
   <div class="card-footer text-center">
     <button
