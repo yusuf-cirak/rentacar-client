@@ -41,8 +41,7 @@ export class CarDetailComponent implements OnInit {
     this.carService
       .getCarDetailById(this.activatedRoute.snapshot.params['carId'])
       .subscribe((response) => {
-        let items: any = response.data;
-        this.carDetail = items[0];
+        this.carDetail = response.data;
         this.carName = this.carDetail.carName;
         this.carModel = this.carDetail.carModelYear;
         this.carPrice = this.carDetail.carDailyPrice;
@@ -53,7 +52,7 @@ export class CarDetailComponent implements OnInit {
 
   getImageByCarId() {
     this.carImageService
-      .getImagesByCarId(this.activatedRoute.snapshot.params['id'])
+      .getImagesByCarId(this.activatedRoute.snapshot.params['carId'])
       .subscribe((response) => {
         this.carImages = response.data;
       });
@@ -64,10 +63,10 @@ export class CarDetailComponent implements OnInit {
   }
 
   goToCarRental() {
-    this.router.navigate(['./car-rental', this.activatedRoute.snapshot.params['id']]);
+    this.router.navigate(['./car-rental', this.activatedRoute.snapshot.params['carId']]);
   }
 
   goToSet(){
-    this.router.navigate(['./car-set', this.activatedRoute.snapshot.params['id']])
+    this.router.navigate(['./car-set', this.activatedRoute.snapshot.params['carId']])
   }
 }
