@@ -12,14 +12,9 @@ import { CarImageService } from '../../services/carImage.service';
   styleUrls: ['./car-detail.component.css']
 })
 export class CarDetailComponent implements OnInit {
-  carDetail: Car | null; // bununda modelini değiştirmek gerek ama yeni bir tane tanılmıyorum
   carDetailDto:CarDetailDto;
-  carImages: CarImage[] = [];
-  carName: string;
-  carModel: number;
-  carPrice: number;
-  carDesc: string;
-  carColor: string;
+  carImages: CarImage[] =[];
+
 
   apiUrl: string = 'https://localhost:44334';
   constructor(
@@ -38,7 +33,6 @@ export class CarDetailComponent implements OnInit {
     });
   }
 
-  // hata sanırım apiden bize IDataresult geliyorken,burada single ile karşılayamıyor
 
   getCarDetailByCarId() {
     this.carService
@@ -46,11 +40,6 @@ export class CarDetailComponent implements OnInit {
       .subscribe((response) => {
         this.carDetailDto = response.data;
         console.log(this.carDetailDto);
-        // this.carName = this.carDetail.carName;
-        // this.carModel = this.carDetail.carModelYear;
-        // this.carPrice = this.carDetail.carDailyPrice;
-        // this.carDesc = this.carDetail.carDescription;
-        // this.carColor = this.carDetail.carColorName;
       });
   }
 
@@ -58,7 +47,7 @@ export class CarDetailComponent implements OnInit {
     this.carImageService
       .getImagesByCarId(this.activatedRoute.snapshot.params['carId'])
       .subscribe((response) => {
-        this.carImages = response.data;
+         this.carImages = response.data;
       });
   }
 

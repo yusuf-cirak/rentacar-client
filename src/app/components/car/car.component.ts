@@ -50,14 +50,10 @@ export class CarComponent implements OnInit {
 
   getCars() {
     this.carService.getCars().subscribe((response) => {
-this.cars=response.data
+    console.log(response.data)
+    this.cars=response.data
     });
-
- // araçlar yüklendikten sonra
   }
-// çalışıyor ama beklemeden basıyor.
-  // backend kısmında ne gibi bir konfigürasyon yaparsam bundan kurtulurum? aslında bu kad da fena gözükmüyor ama yük oluyor işte.her araç için sunucuya tekrar gidecek.deneyelim bi çalışıyor mu bu haliyle
-  // bu haliyle iş görür ama aşırı kaynak tüketir.
 
   getCarsByBrand(brandId: number) {
     if (brandId == 0) {

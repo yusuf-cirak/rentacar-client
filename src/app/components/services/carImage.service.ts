@@ -22,3 +22,9 @@ export class CarImageService {
     return this.httpClient.get<ListResponseModel<CarImage>>(newPath)
   }
 }
+// veritabanında kaç satır var?
+// şimdi hızlı geldi de ilk açılışta baya yavaş geliyo
+// bide bazı hatalar var anlamadım sebebini
+// performans kısmı çok yerden etkilenir.veritabanından kaynaklanıyor olabilir, internetinin hızından olabilir vs..
+// hatalar neler?
+// imagepathii yazdırdığın html dosyası hangisi?

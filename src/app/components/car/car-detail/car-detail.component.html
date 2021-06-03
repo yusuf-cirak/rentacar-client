@@ -10,18 +10,21 @@
           class="carousel-inner d-flex"
           style="height: 40rem; width: 53, 5rem"
         >
+
+
+        <div *ngIf="carDetailDto.carImage.length!=0;else default" class="w-100">
           <div
             *ngFor="let carImage of carDetailDto.carImage; index as i; first as firstImage"
             class="carousel-item align-self-center"
             [ngClass]="{ active: firstImage }"
-            style="height: 100%; width: 100%"
-          >
-            <img
-              src="{{ apiUrl }}{{ carImage.imagePath }}"
-              class=""
-              style="height: 100%; width: 100%"
-            />
+            style="height: 100%; width: 100%">
+            <img src="{{ apiUrl }}{{ carImage.imagePath }}" class="" style="height: 100%; width: 100%" />
           </div>
+        </div> 
+
+        <ng-template #default>
+          <img src="{{ apiUrl }}/images/default.jpg" class="" style="height: 100%; width: 100%" />
+        </ng-template>
 
           <button
             class="carousel-control-prev"
